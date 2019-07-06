@@ -6,13 +6,20 @@ class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
+String errorMessage = 'Getting your location...';
 
 void getLocation() async {
-  Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
-  print('Position: $position');
+  try{
+    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+    print('Position: $position');
+  }catch(e){
+    print('Eexception: $e');
+    errorMessage = 'Sorry. You\'r location cannot be determined right now...';
+  }
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+
   @override 
   void initState(){
     super.initState();
@@ -22,6 +29,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Center(
+        child: Text(errorMessage)
+      )
     );
   }
 }
