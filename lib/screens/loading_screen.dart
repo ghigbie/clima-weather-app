@@ -7,6 +7,11 @@ class LoadingScreen extends StatefulWidget {
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
+void getLocation() async {
+  Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+  print('Position: $position');
+}
+
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
