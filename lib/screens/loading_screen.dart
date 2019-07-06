@@ -20,19 +20,8 @@ void getLocationData() async {
   await location.getCurrentLocation();
   latitude = location.latitute;
   longitude = location.longitude;
-  NetworkHelper
-}
-
-void getData() async{
-  String baseURL = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$kAPIKey';
-  http.Response response = await http.get(baseURL);
-  if(response.statusCode == 200){
-    String data = response.body;
-    var decodedData =jsonDecode(data);
-  }else{
-    print('Something went wrong: ');
-    print(response.statusCode);
-  }
+  NetworkHelper networkHelper = NetworkHelper(url: 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$kAPIKey');
+  var weatherData = await networkHelper.getData();
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
@@ -40,7 +29,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override 
   void initState(){
     super.initState();
-    getLocation();
+    getLocationData(); //calling the function
   }
 
   @override
