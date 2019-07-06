@@ -12,6 +12,7 @@ void getLocation() async {
   try{
     Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
     print('Position: $position');
+    errorMessage = 'Your location is: $position';
   }catch(e){
     print('Eexception: $e');
     errorMessage = 'Sorry. You\'r location cannot be determined right now...';
