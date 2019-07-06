@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:clima/services/location.dart';
+import 'package:clima/services/networking.dart';
 import 'package:clima/utilities/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -14,12 +15,12 @@ String errorMessage = 'Getting your location...';
 double latitude;
 double longitude;
 
-void getLocation() async {
+void getLocationData() async {
   Location location = Location();
   await location.getCurrentLocation();
   latitude = location.latitute;
   longitude = location.longitude;
-  getData();
+  NetworkHelper
 }
 
 void getData() async{
@@ -27,19 +28,7 @@ void getData() async{
   http.Response response = await http.get(baseURL);
   if(response.statusCode == 200){
     String data = response.body;
-    print('Respose: $data');
-    var longitude = jsonDecode(data)['coord']['lon'];
-    var latitude = jsonDecode(data)['coord']['lat'];
-    var weatherDescription =jsonDecode(data)['weather'][0]['description'];
-    var temp = jsonDecode(data)['main']['temp'];
-    var id = jsonDecode(data)['weather'][0]['id'];
-    var city =jsonDecode(data)['name'];
-    print(longitude);
-    print(latitude);
-    print(weatherDescription);
-    print(temp);
-    print(id);
-    print(city);
+    var decodedData =jsonDecode(data);
   }else{
     print('Something went wrong: ');
     print(response.statusCode);
