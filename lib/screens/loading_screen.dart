@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:clima/services/location.dart';
 import 'package:clima/services/networking.dart';
 import 'package:clima/utilities/hidden_constants.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'location_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -41,8 +42,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(errorMessage)
-      )
+        child: SpinKitPulse(
+          color: Colors.white,
+          size: 50.0,
+        ),
+      ),
     );
   }
 }
