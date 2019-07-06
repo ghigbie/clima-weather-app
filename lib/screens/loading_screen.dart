@@ -11,12 +11,9 @@ String errorMessage = 'Getting your location...';
 
 void getLocation() async {
   Location location = Location();
-  try{
-    location.getCurrentLocation(); 
-  }catch(e){
-    print('Eexception: $e');
-    errorMessage = 'Sorry. You\'r location cannot be determined right now...';
-  }
+  await location.getCurrentLocation();
+  print(location.latitute);
+  print(location.longitude);
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
