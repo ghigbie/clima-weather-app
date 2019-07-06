@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:clima/services/location.dart';
 import 'package:clima/utilities/constants.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -9,10 +10,9 @@ class LoadingScreen extends StatefulWidget {
 String errorMessage = 'Getting your location...';
 
 void getLocation() async {
+  Location location = Location();
   try{
-    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
-    print('Position: $position');
-    errorMessage = 'Your location is: $position';
+    location.getCurrentLocation(); 
   }catch(e){
     print('Eexception: $e');
     errorMessage = 'Sorry. You\'r location cannot be determined right now...';
