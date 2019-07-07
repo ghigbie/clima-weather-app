@@ -1,7 +1,6 @@
 #project specific
 hidden_constants.dart
 
-
 # Miscellaneous
 *.class
 *.log
