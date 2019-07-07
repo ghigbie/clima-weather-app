@@ -5,6 +5,12 @@ import 'package:clima/utilities/hidden_constants.dart';
 
 class WeatherModel {
 
+  Future<dynamic> getCityWeather(city) async{
+    NetworkHelper networkHelper =NetworkHelper(url: '$kOpenWeatherBaseURL?q=$city&appid=$kAPIKey&units=metric');
+    var weatherData = await networkHelper.getData();
+    return weatherData;
+  }
+
   Future<dynamic> getLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();

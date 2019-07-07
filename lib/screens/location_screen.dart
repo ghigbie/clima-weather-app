@@ -79,6 +79,7 @@ class _LocationScreenState extends State<LocationScreen> {
                           return CityScreen();
                         }),
                       );
+                      print(typedName);
                     },
                     child: Icon(
                       Icons.location_city,
