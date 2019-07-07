@@ -19,4 +19,4 @@ const kConditionTextStyle = TextStyle(
   fontSize: 100.0,
 );
 
-const openWeatherBaseURL = 'https://api.openweathermap.org/data/2.5/weather?';
+const kOpenWeatherBaseURL = 'https://api.openweathermap.org/data/2.5/weather';
