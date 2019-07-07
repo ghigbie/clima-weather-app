@@ -36,6 +36,7 @@ class _LocationScreenState extends State<LocationScreen> {
       int condition = weatherData['weather'][0]['id'];
       cityName = weatherData['name'];
       weatherIcon = weather.getWeatherIcon(condition);
+      weatherIcon == '🌫' ? weatherIcon = '' : weatherIcon = 'no icon';
       weatherMessage = weather.getMessage(temperature);
     });
   }
@@ -89,7 +90,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       style: kTempTextStyle,
                     ),
                     Text(
-                      weatherIcon != null? weatherIcon : '', //add null check for icon
+                      weatherIcon == null? 'no icon' : weatherIcon, //add null check for icon
                       style: kConditionTextStyle,
                     ),
                   ],
