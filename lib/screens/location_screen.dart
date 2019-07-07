@@ -11,10 +11,11 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  WeatherModel weatherModel =WeatherModel();
+  WeatherModel weather = WeatherModel();
   int temperature;
   int condition;
   String cityName;
+  String weatherIcon;
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class _LocationScreenState extends State<LocationScreen> {
     temperature = weatherData['main']['temp'].toInt();
     condition = weatherData['weather'][0]['id'];
     cityName = weatherData['name'];
+    weatherIcon = weather.getWeatherIcon(condition);
   }
 
   @override
@@ -74,7 +76,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       style: kTempTextStyle,
                     ),
                     Text(
-                      '☀️',
+                      weatherIcon,
                       style: kConditionTextStyle,
                     ),
                   ],
