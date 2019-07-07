@@ -36,7 +36,7 @@ class _LocationScreenState extends State<LocationScreen> {
       int condition = weatherData['weather'][0]['id'];
       cityName = weatherData['name'];
       weatherIcon = weather.getWeatherIcon(condition);
-      weatherIcon == '🌫' ? weatherIcon = '' : weatherIcon = 'no icon';
+      weatherIcon == '🌫' ? weatherIcon = null : null;
       weatherMessage = weather.getMessage(temperature);
     });
   }
@@ -79,7 +79,10 @@ class _LocationScreenState extends State<LocationScreen> {
                           return CityScreen();
                         }),
                       );
-                      print(typedName);
+                      if(typedName !=  null){
+                        var weatherData = await weather.getCityWeather(typedName);
+                        updateUI(weatherData);
+                      };
                     },
                     child: Icon(
                       Icons.location_city,
@@ -97,7 +100,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       style: kTempTextStyle,
                     ),
                     Text(
-                      weatherIcon == null? 'no icon' : weatherIcon, //add null check for icon
+                      weatherIcon == null? '' : weatherIcon, //add null check for icon
                       style: kConditionTextStyle,
                     ),
                   ],
