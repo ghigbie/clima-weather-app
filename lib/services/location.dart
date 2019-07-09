@@ -2,7 +2,7 @@ import 'package:geolocator/geolocator.dart';
 
 class Location {
 
-  double latitute;
+  double latitude;
   double longitude;
   String errorMessage;
 
@@ -10,7 +10,7 @@ class Location {
    Future<void> getCurrentLocation() async {
     try{
       Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
-      latitute =position.latitude;
+      latitude = position.latitude;
       longitude = position.longitude;
     }catch(e){
       print('Eception $e');
