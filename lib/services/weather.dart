@@ -15,7 +15,7 @@ class WeatherModel {
     Location location = Location();
     await location.getCurrentLocation();
 
-    NetworkHelper networkHelper = NetworkHelper(url: '$kOpenWeatherBaseURL?lat=${location.latitute}&lon=${location.longitude}&appid=$kAPIKey&units=metric');
+    NetworkHelper networkHelper = NetworkHelper(url: '$kOpenWeatherBaseURL?lat=${location.latitude}&lon=${location.longitude}&appid=$kAPIKey&units=metric');
 
     var weatherData = await networkHelper.getData();
     return weatherData;
